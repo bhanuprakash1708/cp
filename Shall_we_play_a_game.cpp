@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -33,25 +33,32 @@ double eps = 1e-12;
  
 
 void solve(){
+    long long int n,c=3;
+    cin>>n;
+    if(n==1){
+        cout<<1<<endl;
+        return;
+    }
+    if(n%2==0){
+        for(int i=n-1;i>=2;i--){
+            c=(c*2)%MOD;
+        }
+    }
+    else{
+        c=1;
+        for(int i=2;i<=n;i++){
+            c=(c*2)%MOD;
+        }
+    }
+    cout<<c<<endl;
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -30,28 +30,41 @@ double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
- 
 
 void solve(){
+    ll n,k;
+    cin>>n>>k;
+    ll x,y;
+    vector<ll> b(k), c(k);
+    map<ll,ll>m;
+    for(ll i=0;i<k;i++){
+    cin>>x>>y;
+    m[x]+=y;
+    }
+    ll d=0;
+    if(n>=m.size()){
+        for(auto & it:m)
+        d+=it.second;
+    }
+    else{
+        vector<ll> b;
+        for(auto&it:m){
+            b.push_back(it.second);
+        }
+        sort(b.rbegin(),b.rend());
+        for(int i=0;i<n;i++){
+            d+=b[i];
+        }
+    }
+    cout<<d<<endl;
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int p=1;p<=t;p++) {
+        solve();
     }
     return 0;
 }

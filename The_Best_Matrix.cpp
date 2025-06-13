@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>  
-
 using namespace std;
- 
 typedef long long ll;
 typedef long double ld;
 typedef pair<int,int> p32;
@@ -28,30 +26,27 @@ double eps = 1e-12;
 #define se second
 #define INF 2e18
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define minall(v) *min_element(v.begin(),v.end())
+#define maxall(v) *max_element(v.begin(),v.end())
+#define cntset(x) __builtin_popcountll(x)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
  
+int getgcd(int n1, int n2) { if(!n2) return n1; return getgcd(n2, n1 % n2);}
+int getlcm(int n1, int n2) { if(!n1||!n2) return 0; else return abs(n1*n2)/getgcd(n1, n2);}
+
+
 
 void solve(){
+    
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }

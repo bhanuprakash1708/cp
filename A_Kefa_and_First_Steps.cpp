@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -37,21 +37,25 @@ void solve(){
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
+    int n;
+    int l=1,m=0;
+    cin>>n;
+    vector<int> a(n);
+    for(int i=0;i<n;i++)
+    cin>>a[i];
+    if(n==1){
+        cout<<1;
+        return 0;
+    }
+    for(int i=0;i<n-1;i++){
+        if(a[i]<=a[i+1])
+        l++;
+        else
+        l=1;
+        if(m<l){
+            m=l;
         }
     }
+    cout<<m;
     return 0;
 }

@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>  
-
 using namespace std;
- 
 typedef long long ll;
 typedef long double ld;
 typedef pair<int,int> p32;
@@ -33,25 +31,48 @@ double eps = 1e-12;
  
 
 void solve(){
+    int n;
+    cin>>n;
+    vector<vector<int>>a(n,vector<int>(n));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>a[i][j];
+        }
+    }
+    vector<int>v(2*n+1,0);
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(v[i+j+2]==0){
+                v[i+j+2]=a[i][j];
+            }
+        }
+    }
+    vector<bool>t(2*n+1,false);
+    for(int i=2;i<2*n+1;i++){
+        if(v[i]!=0){
+            t[v[i]]=true;
+        }
+    }
+    int c=0;
+    for(int i=1;i<2*n+1;i++){
+        if(!t[i]){
+            c=i;
+            break;
+        }
+    }
+    v[1]=c;
+    for(int i=1;i<2*n+1;i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }

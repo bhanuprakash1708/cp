@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -33,25 +33,56 @@ double eps = 1e-12;
  
 
 void solve(){
+    int n,k;
+    cin>>n>>k;
+    vector<int>a(n),b(n);
+    for(int i=0;i<n;i++) cin>>a[i];
+    for(int i=0;i<n;i++) cin>>b[i];
+    int c=0;
+    int e=INT_MAX;
+    for(int i=0;i<n;i++){
+        int d=(b[i]-a[i]+9)%9;
+        int r,s;
+        if(d==0){
+            r=0;
+            s=9;
+        }
+        else{
+            if(d<=9-d){
+                r=d;
+                s=9-2*d;
+            }
+            else{
+                r=9-d;
+                s=2*d-9;
+            }
+        }
+        c+=r;
+        if(s<e) e=s;
+    }
+    if(k-c<0){
+        cout<<"No"<<endl;
+        return;
+    }
+    if((k-c)%2==0){
+        cout<<"Yes"<<endl;
+    }
+    else{
+        if(e<=(k-c)){
+            cout<<"Yes"<<endl;
+        }
+        else{
+            cout<<"No"<<endl;
+        }
+    }
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }

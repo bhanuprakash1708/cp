@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -31,27 +31,51 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
  
+int countSetBits(int n) {
+    int c = 0;
+    while (n) {
+        c += n & 1;
+        n >>= 1;
+    }
+    return c;
+}
+
+string can_sort(const vector<int>& p) {
+    unordered_map<int, vector<int>> pg;
+    for (int n : p) {
+        int pc = countSetBits(n);
+        pg[pc].push_back(n);
+    }
+    for (auto& g : pg) {
+        sort(g.second.begin(), g.second.end());
+    }
+    vector<int> result;
+    for (int n : p) {
+        int pc=countSetBits(n);
+        result.push_back(pg[pc].front());
+        pg[pc].erase(pg[pc].begin());
+    }
+    vector<int> original=p;
+    sort(original.begin(), original.end());
+    return (result==original) ? "Yes" : "No";
+}
 
 void solve(){
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    cout << can_sort(a) << endl;
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }

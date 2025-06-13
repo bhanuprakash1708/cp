@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -30,28 +30,35 @@ double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
- 
-
-void solve(){
+bool isAllUpperCase(string s){
+    for(char c: s){
+        if(islower(c)){
+            return false;
+        }
+    }
+    return true;
 }
+void solve(){
+    string s,t;
+    cin>>s;
+    t=s.substr(1,s.length()-1);
+    if(isAllUpperCase(s)){
+        for(int i=0;i<s.length();i++){
+            s[i]=tolower(s[i]);
+        }
+    }
+    else if(isAllUpperCase(t)){
+        for(int i=0;i<s.length();i++){
+            s[i]=tolower(s[i]);
+        }
+        s[0]=toupper(s[0]);
+    }
+    cout<<s<<endl;
+ }
+
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
-    }
+    solve();
     return 0;
 }

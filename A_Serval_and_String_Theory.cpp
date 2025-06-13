@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -31,27 +31,51 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
  
+bool all1(string &t){
+    long long int n=t.size();
+    for(long long int i=0;i<n/2;i++){
+        if(t[i]!=t[n-i-1]) return t[i]<t[n-i-1];
+    }
+    return false;
+}
 
 void solve(){
+    long long int n,k;
+    string s;
+    cin>>n>>k>>s;
+    if(n==1){
+        cout<<"NO"<<endl;
+        return;
+    }
+    bool j=true;
+    for(long long int i=1;i<n;i++){
+        if(s[i]!=s[0]){
+            j=false;
+            break;
+        }
+    }
+    if(j){
+        cout<<"NO"<<endl;
+        return;
+    }
+    if(all1(s)){
+        cout<<"YES"<<endl;
+        return;
+    }
+    if(k>=1){
+        cout<<"YES"<<endl;
+    }
+    else{
+        cout<<"NO"<<endl;
+    }
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(long long int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }

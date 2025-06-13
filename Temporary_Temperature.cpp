@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -33,25 +33,50 @@ double eps = 1e-12;
  
 
 void solve(){
+    ll n,k,l=0;
+    cin>>n>>k;
+    vector<ll>a(n);
+    for(ll i=0;i<n;i++)
+        cin>>a[i];
+    ll q=INT_MIN,p=INT_MAX;
+    for(ll i=0;i<n;i++){
+        p=min(p,a[i]);
+        q=max(q,a[i]);
+    }
+    ll r=q-p,ans=r;
+    while(l<=r){
+        ll c=0,m=(r-l)+l/2;
+        ll lw=a[0]-m,h=a[0]+m;
+        for(ll i=1;i<n;i++){
+            ll nh=min(a[i]+m,h),nl=max(a[i]-m,lw);
+            if(nh<nl){
+                h=a[i]+m; 
+                lw=a[i]-m;
+                c++;
+            }
+            else{
+                h=nh;
+                lw=nl;
+            }
+        }
+        if(c>k){
+            l=m;
+            l++;
+        }
+        else{
+            r=m-1;
+            ans=m;
+        }
+    }
+    cout<<ans<<endl;
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll p;
+    cin >> p;
+    for(int t=1;t<=p;t++) {
+        solve();
     }
     return 0;
 }

@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>  
-
 using namespace std;
- 
 typedef long long ll;
 typedef long double ld;
 typedef pair<int,int> p32;
@@ -30,28 +28,44 @@ double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
- 
-
 void solve(){
+    ll n;
+    cin>>n;
+    string s1,s2,s3;
+    cin>>s1>>s2>>s3;
+    ll a=0,b=0,c=0;
+    for(ll i=0;i<n;i++){
+        if(s1[i]=='1') a++;
+        if(s2[i]=='1') b++;
+        if(s3[i]=='1') c++;
+    }
+    int d=a+b+c;
+    if(d==0){
+        cout<<0<<endl;
+    }
+    else if(d==2*n){
+        ll e=min(a,b);
+        cout<<min(c,e)<<endl;
+    }
+    else if(d==n){
+        ll e=max(a,b);
+        ll r=n-max(c,e);
+        cout<<r<<endl;
+    }
+    else if(d==3*n){
+        cout<<0<<endl;
+    }
+    else{
+        cout<<-1<<endl;
+    }
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }

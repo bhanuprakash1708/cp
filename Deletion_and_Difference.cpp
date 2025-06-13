@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>  
-
+ 
 using namespace std;
  
 typedef long long ll;
@@ -30,28 +30,43 @@ double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
- 
 
 void solve(){
+    ll n,m=INT_MIN,c=0,d=0;
+    cin>>n;
+    vector<ll>a(n);
+    for(ll i=0;i<n;i++){
+        cin>>a[i];
+    }
+    for(ll i=0;i<n;i++){
+        m=max(m,a[i]);
+    }
+    vector<ll>k(m+1,0);
+    for(ll i=0;i<n;i++){
+        k[a[i]]++;
+    }
+    for(ll i=1;i<=m;i++){
+        d+=k[i]/2;
+        if(k[i]%2==1){
+            c++;
+        }
+    }
+    ll s,r=k[0]+d;
+    if(r>0){
+        s=1;
+    }
+    else{
+        s=0;
+    }
+    cout<<s+c<<endl;
 }
 int main()
 {
     fast_cin();
-    string s;
-    cin>>s;
-    int c=0;
-    for(int i=0;i<s.length();i++){
-        if(s[i]=='W'&&s[i+1]=='U'&&s[i+2]=='B'){
-            i+=2;
-            if(c){
-            cout<<" ";
-            c=0;
-            }
-        }
-        else{
-            c=1;
-            cout<<s[i];
-        }
+    ll t;
+    cin >> t;
+    for(int it=1;it<=t;it++) {
+        solve();
     }
     return 0;
 }
