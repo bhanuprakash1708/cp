@@ -44,7 +44,7 @@ int main() {
             }
 
             if (ok) {
-                validPivot = i + 1; // Convert 0-based index to 1-based
+                validPivot = i + 1;
                 break;
             }
         }
