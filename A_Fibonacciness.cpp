@@ -33,17 +33,14 @@ double eps = 1e-12;
  
 
 void solve(){
-    ll n,k,x;
-    cin>>n>>k>>x;
-    ll c=k*(k+1);
-    ll r=n*(n+1);
-    ll d=(n-k)*(n-k+1);
-    if(2*x>=c&&2*x<=(r-d)){
-        cout<<"YES"<<endl;
-    }
-    else{
-        cout<<"NO"<<endl;
-    }
+    vector<int>a(4);
+    for(int i=0;i<4;i++) cin>>a[i];
+    set<int>t;
+    t.insert(a[2]-a[1]);
+    t.insert(a[1]+a[0]);
+    t.insert(a[3]-a[2]);
+    int c=4-t.size();
+    cout<<c<<endl;
 }
 int main()
 {

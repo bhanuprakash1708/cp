@@ -33,25 +33,20 @@ double eps = 1e-12;
  
 
 void solve(){
-    ll n,k,x;
-    cin>>n>>k>>x;
-    ll c=k*(k+1);
-    ll r=n*(n+1);
-    ll d=(n-k)*(n-k+1);
-    if(2*x>=c&&2*x<=(r-d)){
-        cout<<"YES"<<endl;
+    double n;
+    cin>>n;
+    vector<double>a(n);
+    for(int i=0;i<n;i++) cin>>a[i];
+    double c=0;
+    for(double i:a){
+        c+=i;
     }
-    else{
-        cout<<"NO"<<endl;
-    }
+    c=c/n;
+    cout<<fixed<<setprecision(12)<<c<<endl;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
-    for(int it=1;it<=t;it++) {
-        solve();
-    }
+    solve();
     return 0;
 }
