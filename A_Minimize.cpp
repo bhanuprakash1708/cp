@@ -33,17 +33,41 @@ double eps = 1e-12;
  
 
 void solve(){
-    int a,b;
-    cin>>a>>b;
-    cout<<b-a<<endl;
+    int m,n;
+    cin>>m>>n;
+    vector<vector<int>>a(m,vector<int>(n));
+    int c=INT_MIN,minrow=INT_MAX,d=-1,minindex=-1;
+    for(int i=0;i<m;i++){
+        int e=0;
+        for(int j=0;j<n;j++){
+            cin>>a[i][j];
+            e+=a[i][j];
+        }
+        if(e>c){
+            c=e;
+            d=i;
+        }
+        if(e<minrow){
+            minrow=e;
+            minindex=i;
+        }
+    }
+    // for(int i=0;i<m;i++){
+    //     int e=0;
+    //     for(int j=0;j<n;j++){
+    //         e+=a[i][j];
+    //     }
+    //     if(e>c){
+    //         c=e;
+    //         d=i;
+    //     }
+    // }
+    cout<<c<<" "<<d<<endl;
+    cout<<minrow<<" "<<minindex<<endl;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
-    for(int it=1;it<=t;it++) {
-        solve();
-    }
+    solve();
     return 0;
 }
